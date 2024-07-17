@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Sentiment Analysis</title>
+</head>
+<body>
+    <h1>YouTube Sentiment Analysis</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="video_url">YouTube Video URL:</label>
+        <input type="text" id="video_url" name="video_url" required>
+        <label for="max_results">Max Results:</label>
+        <input type="number" id="max_results" name="max_results" value="100" min="1" max="100" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if positive is not None %}
+        <h2>Results</h2>
+        <p>Positive: {{ positive }}</p>
+        <p>Negative: {{ negative }}</p>
+        <p>Neutral: {{ neutral }}</p>
+        <img src="{{ sentiment_plot }}" alt="Sentiment Analysis Pie Chart">
+    {% endif %}
+</body>
+</html>
